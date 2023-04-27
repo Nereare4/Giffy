@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import ButtonComponent from "./Button";
+import './styles/SearchForm.css'
 
 function SearchForm({onSubmit}) {
 
@@ -15,9 +17,9 @@ function SearchForm({onSubmit}) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <button>Buscar</button>
-            <input placeholder="Search a gif here..." onChange={handleChange} type='text' value={keyword} />
+        <form onSubmit={handleSubmit} className="c-search">
+            <ButtonComponent />
+            <input className="c-search-input" placeholder="Search a gif here..." onChange={handleChange} type='text' value={keyword} />
         </form>
     )   
 }

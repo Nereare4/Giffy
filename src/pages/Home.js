@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { Link, useLocation } from "wouter";
+import { useLocation } from "wouter";
 import ListOfGifs from "../components/ListOfGifs";
 import { useGifs } from "../hooks/useGifs";
 import TrendingSearches from "../components/TrendingSearches";
@@ -22,7 +22,7 @@ export default function Home(){
                 <title>Home | Giffy</title>
                 <link rel="canocical" href="https://giffy-project-nre.vercel.app/"/>
             </Helmet>
-            <header className="o-header">
+            <header className="">
                 <SearchForm onSubmit={handleSubmit}/>
             </header>
             <div className="App-wrapper">
