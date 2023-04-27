@@ -1,25 +1,43 @@
-import logo from './logo.svg';
 import './App.css';
+//import ListOfGifs from './components/ListOfGifs';
+import React, { Suspense } from "react";
+import SearchResults from './pages/SearchResults'
+import Detail from './pages/Detail'
+//import Home from './pages/Home'
+import { Link, Route, Switch } from 'wouter';
+import Context from './context/StaticContext';
+import { GifsContextProviders } from './context/GifsContext';
+
+const HomePage = React.lazy(() => import("./pages/Home"));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Context.Provider value={{name: 'nerea', suscribeteAlCanal: true}}>
+      <div className="App">
+        <Suspense fallback={null}>
+          <section className="App-content">
+            <Link to='/'>
+            <figure className="App-logo">
+                <img alt="Giffy logo" src="/logo.png" />
+              </figure>
+            </Link>
+            <GifsContextProviders>
+              <Switch>
+                <Route component={HomePage} path="/" />
+                <Route
+                    component={SearchResults}
+                    path="/search/:keyword/:rating?"
+                  />
+                <Route component={Detail} path="/gif/:id" />
+                <Route component={() => <h1>404 ERROR </h1>} path="/404"/>
+              </Switch>
+            </GifsContextProviders>
+          </section>
+        </Suspense>
+      </div>
+    </Context.Provider>
   );
 }
 
 export default App;
+  
