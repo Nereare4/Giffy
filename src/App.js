@@ -7,6 +7,7 @@ import Detail from './pages/Detail'
 import { Link, Route, Switch } from 'wouter';
 import Context from './context/StaticContext';
 import { GifsContextProviders } from './context/GifsContext';
+import ErrorPage from './pages/ErrorPage';
 
 const HomePage = React.lazy(() => import("./pages/Home"));
 
@@ -29,7 +30,7 @@ function App() {
                     path="/search/:keyword/:rating?"
                   />
                 <Route component={Detail} path="/gif/:id" />
-                <Route component={() => <h1>404 ERROR </h1>} path="/404"/>
+                <Route component={ErrorPage} path="/:rest*" />
               </Switch>
             </GifsContextProviders>
           </section>
