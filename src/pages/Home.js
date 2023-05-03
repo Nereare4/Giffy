@@ -1,41 +1,32 @@
-import { useCallback } from "react";
-import { useLocation } from "wouter";
-import ListOfGifs from "../components/ListOfGifs";
-import { useGifs } from "../hooks/useGifs";
-import TrendingSearches from "../components/TrendingSearches";
-import SearchForm from "../components/SearchForm";
-import { Helmet } from "react-helmet";
+import React from "react"
+import ListOfGifs from '../components/ListOfGifs'
+import {useGifs} from '../hooks/useGifs'
+import TrendingSearches from '../components/TrendingSearches'
+import SearchForm from '../components/SearchForm'
+import {Helmet} from 'react-helmet'
 
-export default function Home(){
-    
-    const [path, pushLocation] = useLocation()
-    const {loading, gifs} = useGifs()
+export default function Home() {
+  const {gifs} = useGifs()
 
-    const handleSubmit = useCallback(({keyword}) =>{
-        //navegar a otra ruta
-        pushLocation(`/search/${keyword}`)
-    }, [pushLocation])
-
-    return (
-        <>
-            <Helmet>
-                <title>Home | Giffy</title>
-                <link rel="canocical" href="https://giffy-project-nre.vercel.app/"/>
-            </Helmet>
-            <header className="">
-                <SearchForm onSubmit={handleSubmit}/>
-            </header>
-            <div className="App-wrapper">
-                <div className="App-main">
-                    <div className="App-results">
-                        <h3 className="App-title">Última búsqueda</h3>
-                        <ListOfGifs gifs={gifs} />
-                    </div>
-                    <div className="App-category">
-                        <TrendingSearches />
-                    </div>
-                </div>
-            </div>
-        </>
-    )
+  return (
+    <>
+      <Helmet>
+        <title>Home | Giffy</title>
+      </Helmet>
+      <header className="o-header">
+        <SearchForm />
+      </header>
+      <div className="App-wrapper">
+        <div className="App-main">
+          <div className="App-results">
+            <h3 className="App-title">Última búsqueda</h3>
+            <ListOfGifs gifs={gifs} />
+          </div>
+          <div className="App-category">
+            <TrendingSearches />
+          </div>
+        </div>
+      </div>
+    </>
+  )
 }
