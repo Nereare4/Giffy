@@ -23,6 +23,6 @@ test('search form could be used', async () => {
 })*/
 test('renders without crashing', async() => {
   const {findByText} = render(<App />);
-  const title = await findByText(/Última búsqueda/i);
+  const title = await findByText(/Last Search/i);
   expect(title).toBeInTheDocument();
 });

@@ -29,10 +29,10 @@
 }
 
 .form input.error {
-    border: 1px solid red;
+    border: 2px solid red;
 }
 
 .form .btn {
     width: 100%;
-    border-radius: 50px 50px 50px 50px;
+    border-radius: 50px;
 }
